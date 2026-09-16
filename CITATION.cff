@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "QAAF: Quality-Aware Adaptive Fusion"
+abstract: >-
+  Code for "Quality-Aware Multimodal Fusion Reveals Implicit Identity in
+  Valence-Arousal Features". Quality-aware gating and adaptive modality dropout
+  for multimodal valence-arousal estimation, and the verification experiments
+  that probe the resulting representations for identity information.
+type: software
+
+# Current affiliations.
+authors:
+  - family-names: "Kim"
+    given-names: "Jisu"
+    affiliation: "University of Tennessee, Knoxville"
+  - family-names: "Riggan"
+    given-names: "Benjamin S."
+    affiliation: "University of Tennessee, Knoxville"
+
+# Affiliations as they appear on the paper.
+preferred-citation:
+  type: conference-paper
+  title: "Quality-Aware Multimodal Fusion Reveals Implicit Identity in Valence-Arousal Features"
+  collection-title: "IEEE International Joint Conference on Biometrics (IJCB)"
+  year: 2026
+  notes: "Accepted at IJCB 2026. Add pages and doi below once the proceedings are published; leave the arXiv identifier in place."
+  identifiers:
+    - type: other
+      value: "arXiv:2607.21347"
+      description: "arXiv preprint"
+  url: "https://arxiv.org/abs/2607.21347"
+  authors:
+    - family-names: "Kim"
+      given-names: "Jisu"
+      affiliation: "University of Tennessee, Knoxville"
+    - family-names: "Riggan"
+      given-names: "Benjamin S."
+      affiliation: "University of Nebraska-Lincoln"

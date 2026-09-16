@@ -1,0 +1,25 @@
+# Core runtime for the QAAF release.
+# Versions are the ones used for the results reported in the paper (Python 3.11).
+# For the exact, fully resolved environment see environment.yml / requirements-frozen.txt.
+
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+
+numpy==2.2.6
+scipy==1.16.2
+pandas==2.3.3
+scikit-learn==1.8.0
+h5py==3.15.1
+pyyaml==6.0.3
+tqdm==4.67.1
+pillow==12.1.1
+matplotlib==3.10.7
+opencv-python==4.12.0.88
+
+transformers==4.50.3
+timm==0.9.16
+
+# Experiment logging. Training calls wandb unconditionally; run with
+# WANDB_MODE=disabled (as the scripts in scripts/ do) if you do not want an account.
+wandb==0.23.1

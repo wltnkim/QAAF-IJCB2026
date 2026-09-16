@@ -1,0 +1,12 @@
+# Optional. Only needed to reproduce the comparison baselines in the
+# verification tables, not to train or evaluate QAAF itself.
+
+facenet-pytorch==2.6.0     # ArcFace / FaceNet embeddings
+hsemotion==0.3.0           # FER baseline
+scikit-image==0.26.0       # LBP texture baseline
+clip @ git+https://github.com/openai/CLIP.git
+
+# Two further baselines load code directly from their authors' repositories
+# rather than from PyPI. See docs/REPRODUCING.md, "External baseline code".
+#   AdaFace   https://github.com/mk-minchul/AdaFace
+#   MAE-DFER  https://github.com/sunlicai/MAE-DFER

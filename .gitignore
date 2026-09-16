@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local environment
+.venv/
+.env
+*.egg-info/
+
+# Datasets and anything derived from them. These are redistributed by their
+# original providers only; see docs/DATA.md.
+data/
+features/
+va_sequences*/
+*.h5
+
+# Model files and run outputs
+PretrainedWeights/
+saved_models*/
+saved_fusion_models/
+results/
+biometric_results*/
+verification_results*/
+logs/
+slurm_logs/
+wandb/
+*.pt
+*.pth
+*.ckpt
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

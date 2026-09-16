@@ -1,0 +1,66 @@
+# Declarative record of the training configuration behind every reported
+# fusion result. This file documents the settings; the runnable form is
+# scripts/train_main_table.sh, which passes the same values as CLI flags.
+
+training:
+  optimizer: SGD              # train_from_features_joint_da.py default
+  lr: 0.0001
+  weight_decay: 1.0e-4
+  scheduler: none
+  batch_size: 64
+  epochs: 300
+  patience: 25                # early stopping on validation average CCC
+  seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+fusion:
+  fusion_type: TRANSFORMER    # joint multimodal transformer with key-based cross-attention
+  output_format: SELF_ATTEN
+  num_heads: 4
+  num_layers: 2
+  v_dropout: 0.2
+  a_dropout: 0.2
+  common_dim: 512             # both modalities are projected to this width
+
+backbones:
+  audio:
+    name: ResNet18            # fine-tuned on Aff-wild2 spectrograms
+    dim: 512
+  vision:
+    # feature_dir is the sub-directory under the cached feature root
+    - {name: ViViT,    feature_dir: ViViT_s4,    dim: 768}
+    - {name: VideoMAE, feature_dir: VideoMAE_s6, dim: 768}
+    - {name: I3D,      feature_dir: I3D,         dim: 512}
+
+# The six rows of the fusion comparison table, and the flags that select them.
+methods:
+  baseline:
+    flags: []
+    note: joint multimodal transformer fusion, no quality awareness
+  qmf:
+    flags: [--da_qmf_gating]
+    note: energy-based gating, no learned parameters
+  qmf_amd:
+    flags: [--da_qmf_gating, --da_adaptive_dropout]
+  fixed_dropout:
+    flags: [--da_modality_dropout, "0.20"]
+    note: modality dropout at a fixed rate, the control for AMD
+  amd:
+    flags: [--da_adaptive_dropout]
+    note: quality-dependent modality dropout, training only
+  qag_amd:
+    flags: [--da_quality_gating, --da_adaptive_dropout]
+    note: the proposed QAAF configuration
+
+qag:
+  hidden_dim: 64              # --da_qag_hidden_dim; the architecture ablation sweeps 16/128/256
+  active_at: [train, inference]
+
+amd:
+  p_min: 0.05                 # --da_adaptive_p_min
+  p_max: 0.40                 # --da_adaptive_p_max
+  learnable_p_max: false      # --da_learnable_pmax enables it, range max 0.7
+  active_at: [train]
+
+evaluation:
+  eval_missing_modality: true # also scores video-only and audio-only at the best epoch
+  metric: CCC                 # concordance correlation coefficient, valence and arousal
