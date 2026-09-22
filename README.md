@@ -4,6 +4,10 @@ Code for **"Quality-Aware Multimodal Fusion Reveals Implicit Identity in
 Valence-Arousal Features"**, accepted at IJCB 2026.
 Paper: [arXiv:2607.21347](https://arxiv.org/abs/2607.21347).
 
+<p align="center">
+  <img src="assets/overview.png" width="720" alt="QAAF compared with ArcFace and AdaFace: a multimodal model trained only for valence-arousal estimation yields soft biometric features that separate an impostor pair ArcFace accepts">
+</p>
+
 Multimodal valence-arousal (VA) estimation is used here as a pretext task.
 QAAF estimates per-sample, per-modality reliability and adapts each modality's
 contribution through two label-free components:
@@ -13,8 +17,14 @@ contribution through two label-free components:
 - **AMD**, adaptive modality dropout: a quality-dependent dropout rate, so
   unreliable modalities are dropped more often. Training only.
 
+<p align="center">
+  <img src="assets/framework.png" width="900" alt="QAAF framework: quality-aware gating and adaptive modality dropout on each modality, cross-attention fusion, and an MLP head for valence and arousal">
+</p>
+
 The paper then probes what those VA-trained representations encode, and finds
 identity-discriminative structure that no identity supervision put there.
+
+The figures are from the paper. Faces in the dataset examples are blurred here.
 
 ## What this repository contains
 
@@ -34,6 +44,7 @@ models/  losses/           the fusion wrapper; QAG, AMD and the other gating mod
 datasets/                  the cached-feature dataset
 docs/DATA.md               how to obtain the datasets and lay them out
 docs/REPRODUCING.md        what this repository covers, and which script makes which table
+assets/                    the two README figures
 ```
 
 The gating and dropout modules are in `losses/da_losses.py`
